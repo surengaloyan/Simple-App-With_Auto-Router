@@ -24,11 +24,13 @@ class Routes extends _i3.RootStackRouter {
   final Map<String, _i3.PageFactory> pagesMap = {
     FirstPage.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i1.FirstRoute());
+          routeData: routeData, child: const _i1.FirstRoute());
     },
     SecondPage.name: (routeData) {
+      final args = routeData.argsAs<SecondPageArgs>();
       return _i3.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i2.SecondRoute());
+          routeData: routeData,
+          child: _i2.SecondRoute(key: args.key, routeName: args.routeName));
     }
   };
 
@@ -49,8 +51,24 @@ class FirstPage extends _i3.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.SecondRoute]
-class SecondPage extends _i3.PageRouteInfo<void> {
-  const SecondPage() : super(SecondPage.name, path: '/second-route');
+class SecondPage extends _i3.PageRouteInfo<SecondPageArgs> {
+  SecondPage({_i4.Key? key, required String routeName})
+      : super(SecondPage.name,
+            path: '/second-route',
+            args: SecondPageArgs(key: key, routeName: routeName));
 
   static const String name = 'SecondPage';
+}
+
+class SecondPageArgs {
+  const SecondPageArgs({this.key, required this.routeName});
+
+  final _i4.Key? key;
+
+  final String routeName;
+
+  @override
+  String toString() {
+    return 'SecondPageArgs{key: $key, routeName: $routeName}';
+  }
 }

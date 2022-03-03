@@ -15,7 +15,7 @@ class FirstRoute extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Open route'),
           onPressed: () {
-            AutoRouter.of(context).push(const SecondPage());
+            AutoRouter.of(context).push(SecondPage(routeName: 'Hi Suren!!!'));
           },
         ),
       ),
